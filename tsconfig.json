@@ -13,7 +13,7 @@
     "module": "es6",
     "target": "es6",
     "moduleResolution": "node",
-    "jsx": "react",
+    "jsx": "react-jsx",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true
   },
