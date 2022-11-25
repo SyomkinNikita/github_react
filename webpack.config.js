@@ -4,13 +4,15 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const srcPath = path.resolve(__dirname, "src");
 const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
 const TsCheckerPlugin = require("fork-ts-checker-webpack-plugin");
+const webpack = require("webpack");
+const dotenv = require("dotenv");
 
 const isProd = process.env.NODE_ENV === "production";
 
 module.exports = {
   entry: path.resolve(srcPath, "index.tsx"),
   target: !isProd ? "web" : "browserlist",
-  devtool: isProd ? 'hidden-source-map': 'eval-source-map',
+  devtool: isProd ? "hidden-source-map" : "eval-source-map",
   output: {
     path: buildPath,
     filename: "bundle.js",
@@ -21,6 +23,9 @@ module.exports = {
     }),
     !isProd && new ReactRefreshWebpackPlugin(),
     new TsCheckerPlugin(),
+    new webpack.DefinePlugin({
+      "process.env": JSON.stringify(process.env),
+    }),
   ].filter(Boolean),
   module: {
     rules: [
@@ -47,6 +52,8 @@ module.exports = {
     extensions: [".ts", ".tsx", ".js", ".jsx"],
     alias: {
       components: path.join(srcPath, "components"),
+      context: path.join(srcPath, "context"),
+      api: path.join(srcPath, "api"),
     },
   },
   devServer: {
