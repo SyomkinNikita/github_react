@@ -3,7 +3,8 @@
     "baseUrl": "src",
     "paths": {
       "components": ["components"],
-      "constants": ["constants"]
+      "constants": ["constants"],
+      "pages": ["pages"]
     },
     "noEmit": true,
     "allowJs": true,
