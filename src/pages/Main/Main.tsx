@@ -12,7 +12,7 @@ export const MainPage: FC = () => {
     variables: { first, location },
   });
 
-  console.log(loading, data, fetchMore);
+  console.log(data);
   return (
     <div>
       <div>MainPage</div>
