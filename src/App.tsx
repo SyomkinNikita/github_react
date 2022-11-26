@@ -1,24 +1,17 @@
-import React, { FC, useState } from "react";
-import { useQuery } from "@apollo/client";
-import { FEED_QUERY } from "api";
+import React, { FC } from "react";
+import { Routes, Route } from "react-router-dom";
+import { MainPage } from "pages/Main";
+import { AboutPage } from "pages/About";
+import { Header } from "components";
 
-
-const App: FC = () => {
-  const first = 20;
-  const [location, setLocation] = useState("location:russia");
-  const [currentCountry, setCurrentCountry] = useState("russia");
-  const [searchValue, setSearchValue] = useState("");
-
-  const { loading, data, fetchMore } = useQuery(FEED_QUERY, {
-    variables: { first, location },
-  });
-
-  console.log(loading, data, fetchMore)
-  return (
-    <div>
-      <div></div>
-    </div>
-  );
-};
+const App: FC = () => (
+  <>
+    <Header />
+    <Routes>
+      <Route path="/" element={<MainPage />} />
+      <Route path="about" element={<AboutPage />} />
+    </Routes>
+  </>
+);
 
 export default App;

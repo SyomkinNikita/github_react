@@ -64,6 +64,7 @@ module.exports = {
       context: path.join(srcPath, "context"),
       api: path.join(srcPath, "api"),
       constants: path.join(srcPath, "constants"),
+      pages: path.join(srcPath, "pages"),
     },
   },
   devServer: {
