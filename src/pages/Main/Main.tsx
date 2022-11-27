@@ -1,6 +1,17 @@
 import React, { FC, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { FEED_QUERY } from "api";
+import { TGithubGraphQL } from "types";
+import {
+  Cell,
+  GridContainer,
+  Heading,
+  Input,
+  SelectCountry,
+  Flex,
+  User,
+  Spacer,
+} from "components";
 
 export const MainPage: FC = () => {
   const first = 20;
@@ -12,10 +23,38 @@ export const MainPage: FC = () => {
     variables: { first, location },
   });
 
-  console.log(data);
+  data as TGithubGraphQL;
+
+  console.log(data?.search.edges.map((item: any) => item.node));
   return (
-    <div>
-      <div>MainPage</div>
-    </div>
+    <main>
+      <GridContainer>
+        <Cell columnEnd={12} rowEnd={1}>
+          <Heading as="h1" isTextAlignCenter>
+            Github Repositories
+          </Heading>
+          <Flex alignItems="center" justifyContent="space-between">
+            <Input
+              setLocation={setLocation}
+              setSearchValue={setSearchValue}
+              currentCountry={currentCountry}
+            />
+            <SelectCountry
+              setLocation={setLocation}
+              currentCountry={currentCountry}
+              setCurrentCountry={setCurrentCountry}
+            />
+          </Flex>
+        </Cell>
+      </GridContainer>
+      <Spacer spaceMob={32} spaceDesktop={52} />
+      <GridContainer>
+        {data?.search.edges.map((item: any) => (
+          <Cell columnEnd={4} rowEnd={1} key={item.cursor}>
+            <User user={item.node} />
+          </Cell>
+        ))}
+      </GridContainer>
+    </main>
   );
 };

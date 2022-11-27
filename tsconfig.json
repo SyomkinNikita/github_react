@@ -4,7 +4,8 @@
     "paths": {
       "components": ["components"],
       "constants": ["constants"],
-      "pages": ["pages"]
+      "pages": ["pages"],
+      "localTypes": ["types"]
     },
     "noEmit": true,
     "allowJs": true,

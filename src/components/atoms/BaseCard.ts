@@ -6,8 +6,9 @@ export const BaseCard = styled.div`
   padding: 16px;
   border-radius: 8px;
   color: white;
-  height: 100%;
   width: 100%;
+  height: 100%;
+  justify-content: space-between;
 
   @media (min-width: 1024px) {
     padding: 24px;
